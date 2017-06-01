@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			.add{
+				width:30px;
+				height: 30px;
+				line-height: 30px;
+				border: solid 1px #000;
+				text-align: center;
+				display: inline-block;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			.input-text{
+				height:30px;
+				width: 100px;
+				border: solid 1px #000;
+				text-align: center;
+			}
+			.reduce{
+				width:30px;
+				height: 30px;
+				line-height: 30px;
+				border: solid 1px #000;
+				text-align: center;
+				display: inline-block;
+				border-radius: 3px;
+				cursor: pointer;
+			}
+			.left{
+				color: red;
+				font-weight: bold;
+				float: left;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="left" id="leftValue">55</div>
+		<div class="add" id="adiv" onclick="add('#tinput','#leftValue')">+</div>
+<!--	<input type="text" class="input-text" id="tinput" value="1" onkeyup="this.value = this.value.replace(/[^\d]/g,'')">-->
+<!--	<input type="text" class="input-text" id="tinput" value="1" onkeyup="limit(this.id)">-->
+		<input type="text" class="input-text" id="tinput" value="1" onkeyup="limit('#tinput','#leftValue')">
+		<div class="reduce" id="rdiv" onclick="reduce('#tinput','#leftValue')">-</div>
+		
+
+		
+		
+		
+		
+		<script>
+//			function limit(y){
+//				var thisValue = document.getElementById(y).value;
+//				thisValue = thisValue.replace(/[^\d]/g,'');  //当成全局变量，无法使用
+//				document.getElementById(y).value = thisValue.replace(/[^\d]/g,'');
+//			}
+			
+			function limit(x,y){
+				var textValue = document.querySelector(x).value;
+				var leftValue = parseInt(document.querySelector(y).innerHTML);
+				document.querySelector(x).value = textValue.replace(/[^\d]/g,'');
+				document.querySelector(y).innerHTML =  textValue * 55;
+				if(textValue == '' || textValue == 0){
+					document.querySelector(x).value = 1;
+					document.querySelector(y).innerHTML = 55;
+				}
+			}
+			
+			
+			
+			function add(x,y){
+				var leftValue = parseInt(document.querySelector(y).innerHTML);
+				var textValue = parseInt(document.querySelector(x).value);
+				document.querySelector(x).value = textValue + 1;
+				document.querySelector(y).innerHTML = leftValue + 55;
+			}
+			
+			function reduce(x,y){
+				var leftValue = parseInt(document.querySelector(y).innerHTML);
+				var textValue = parseInt(document.querySelector(x).value);
+				if(textValue > 1){
+					document.querySelector(x).value = textValue - 1;
+					document.querySelector(y).innerHTML = leftValue - 55;
+				}
+			}
+		</script>
+		
+		
+		
+		
+		
+		
+		
+	</body>
+</html>
